@@ -12,3 +12,4 @@ jobs:
           SECRET: ${{ secrets.SECRET }}
         run: |
           printf 'The secret is "%s"\n' "$SECRET"
+          printf 'The secret is %s characters long\n' "${#SECRET}"
