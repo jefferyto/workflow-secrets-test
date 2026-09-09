@@ -5,7 +5,7 @@ on: push
 jobs:
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     steps:
       - name: Test step
         env:
@@ -13,3 +13,7 @@ jobs:
         run: |
           printf 'The secret is "%s"\n' "$SECRET"
           printf 'The secret is %s characters long\n' "${#SECRET}"
+
+      - uses: $/.github/actions/composite
+        with:
+          secret: ${{ secrets.SECRET }}

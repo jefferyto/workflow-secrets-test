@@ -1,0 +1,16 @@
+name: Composite Action Secrets Test
+
+inputs:
+  secret:
+    description: The secret
+
+runs:
+  using: "composite"
+  steps:
+    - name: Test step
+      shell: bash
+      env:
+        SECRET: ${{ inputs.secret }}
+      run: |
+        printf 'The secret is "%s"\n' "$SECRET"
+        printf 'The secret is %s characters long\n' "${#SECRET}"
