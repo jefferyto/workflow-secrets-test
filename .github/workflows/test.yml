@@ -9,6 +9,6 @@ jobs:
     steps:
       - name: Test step
         env:
-          SECRET: {{ secrets.SECRET }}
+          SECRET: ${{ secrets.SECRET }}
         run: |
           printf 'The secret is "%s"\n' "$SECRET"
