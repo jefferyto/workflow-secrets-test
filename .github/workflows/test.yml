@@ -1,0 +1,13 @@
+name: Workflow Secrets Test
+
+on: push
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    env:
+      SECRET: {{ secrets.SECRET }}
+    steps:
+      - run: |
+          printf 'The secret is "%s"\n' "$SECRET"
