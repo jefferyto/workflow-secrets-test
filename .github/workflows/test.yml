@@ -2,17 +2,25 @@ name: Workflow Secrets Test
 
 on: push
 
+env:
+  SECRET: ${{ secrets.SECRET }}
+
 jobs:
   test:
     name: Test
     runs-on: ubuntu-slim
     steps:
       - name: Test step
-        env:
-          SECRET: ${{ secrets.SECRET }}
         run: |
           printf 'The secret is "%s"\n' "$SECRET"
           printf 'The secret is %s characters long\n' "${#SECRET}"
+
+      - name: Formatted test step
+        env:
+          FORMATTED_SECRET: ${{ format('/{0}/', env.SECRET) }}
+        run: |
+          printf 'The formatted secret is "%s"\n' "$FORMATTED_SECRET"
+          printf 'The formatted secret is %s characters long\n' "${#FORMATTED_SECRET}"
 
       - name: Composite action test
         uses: $/.github/actions/composite
