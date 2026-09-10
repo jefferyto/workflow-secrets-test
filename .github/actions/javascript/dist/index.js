@@ -33712,9 +33712,14 @@ Octokit.plugin(restEndpointMethods, paginateRest).defaults(defaults);
 new Context();
 
 try {
-  const secret = getInput('secret');
-  info(`The secret is "${secret}"`);
-  info(`The secret is ${secret.length} characters long`);
+  const formatted_secret = getInput('formatted_secret');
+  info(`The formatted secret is "${formatted_secret}"`);
+  info(`The formatted secret is ${formatted_secret.length} characters long`);
+  if (formatted_secret === '/secret/') {
+    info('The formatted secret is correct');
+  } else {
+    info('The formatted secret is not correct');
+  }
 } catch (error) {
   setFailed(error.message);
 }

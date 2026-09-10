@@ -1,8 +1,8 @@
 name: JavaScript Action Secrets Test
 
 inputs:
-  secret:
-    description: The secret
+  formatted_secret:
+    description: The formatted secret
 
 runs:
   using: node24

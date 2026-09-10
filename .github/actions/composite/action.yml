@@ -1,8 +1,8 @@
 name: Composite Action Secrets Test
 
 inputs:
-  secret:
-    description: The secret
+  formatted_secret:
+    description: The formatted secret
 
 runs:
   using: "composite"
@@ -10,7 +10,13 @@ runs:
     - name: Test step
       shell: bash
       env:
-        SECRET: ${{ inputs.secret }}
+        FORMATTED_SECRET: ${{ inputs.formatted_secret }}
       run: |
-        printf 'The secret is "%s"\n' "$SECRET"
-        printf 'The secret is %s characters long\n' "${#SECRET}"
+        printf 'The formatted secret is "%s"\n' "$FORMATTED_SECRET"
+        printf 'The formatted secret is %s characters long\n' "${#FORMATTED_SECRET}"
+        if [ "$FORMATTED_SECRET" = "/secret/" ]; then
+          printf 'The formatted secret is correct\n'
+        else
+          printf 'The formatted secret is not correct\n'
+        fi
+
