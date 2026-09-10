@@ -1,0 +1,9 @@
+name: JavaScript Action Secrets Test
+
+inputs:
+  secret:
+    description: The secret
+
+runs:
+  using: node24
+  main: dist/index.js

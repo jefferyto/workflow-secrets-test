@@ -14,6 +14,12 @@ jobs:
           printf 'The secret is "%s"\n' "$SECRET"
           printf 'The secret is %s characters long\n' "${#SECRET}"
 
-      - uses: $/.github/actions/composite
+      - name: Composite action test
+        uses: $/.github/actions/composite
+        with:
+          secret: ${{ secrets.SECRET }}
+
+      - name: JavaScript action test
+        uses: $/.github/actions/javascript
         with:
           secret: ${{ secrets.SECRET }}
